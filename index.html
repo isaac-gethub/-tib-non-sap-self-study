@@ -174,7 +174,17 @@ function stepHtml(s){
 }
 function home(){
   T.day=null;$('#btnHome').hidden=true;
-  $('#app').innerHTML=`<div class="card"><h2>Welcome</h2><p>This course teaches you, on your own, how to do the five Prep Block days: handle data in Excel, prove it complete, use formulas to test, work with client-supplied data, and write the evidence. Each day is a guided walkthrough on the real practice data. You watch each step done, do it yourself in Excel, then check your answers.</p>
+  let first=true;try{first=!localStorage.getItem('nsp-guide-seen');localStorage.setItem('nsp-guide-seen','1')}catch(e){}
+  const guide=`<details class="card" id="guide"${first?' open':''}><summary><b>How to use this course</b>${first?'':' (tap to open)'}</summary>
+  <ol class="do"><li><b>Sign in</b> with your TIB trainee email and password. Use <b>Forgot password?</b> if you need a new one. If it says you are not enrolled, email the address at the bottom of this guide.</li>
+  <li><b>Set up once, before Day 1:</b> create a folder <b>TIB_Prep</b> with three folders inside it: <b>01_Original</b>, <b>02_Working</b> and <b>03_Evidence</b>. Day 1 shows you why.</li>
+  <li><b>Work each day in order.</b> Read a step, do it yourself in Excel, then press <b>Next step</b>. Each day is split into parts; the buttons under the day title let you jump between them.</li>
+  <li><b>Download the practice file</b> from the button inside each day. Save it in the right folder. Never work on the original.</li>
+  <li><b>Check yourself</b> comes at the end of each day. Type your answer and press <b>Check</b>. Try first. Press <b>Show me</b> only when stuck, to see the answer and the formula.</li>
+  <li><b>Your progress is saved on this device and browser only.</b> If you switch device, you start again at zero.</li>
+  <li><b>You need an internet connection</b> to sign in and to download the Excel files. All data in this course is fictional.</li>
+  <li><b>Need help?</b> Email <b>academy@tib-properties.com</b> and say which day and step you are on.</li></ol></details>`;
+  $('#app').innerHTML=guide+`<div class="card"><h2>Welcome</h2><p>This course teaches you, on your own, how to do the five Prep Block days: handle data in Excel, prove it complete, use formulas to test, work with client-supplied data, and write the evidence. Each day is a guided walkthrough on the real practice data. You watch each step done, do it yourself in Excel, then check your answers.</p>
   <p><b>How to work:</b> read a step, do it in your own Excel with the practice file, then press <b>Next</b>. Answer the questions at the end of each day. Your progress is saved on this device.</p></div>
   <div class="daygrid">`+PLAN.map(([n,t,s])=>{const d=dayOf(n);return d?`<button class="day card" data-day="${n}"><b>Day ${n}: ${esc(t)}</b><small>${esc(s)} · about ${esc(d.time)}</small><div class="bar"><i style="width:${dayPct(d)}%"></i></div><small>${dayPct(d)}% done</small></button>`:`<div class="day card soon"><b>Day ${n}: ${esc(t)}</b><small>${esc(s)}</small><small>Coming soon</small></div>`}).join('')+'</div>';
 }
