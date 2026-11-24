@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Non-SAP Topics Self Study Course | TIB Systems</title>
+<style>
+:root{--bg:#f4f6f9;--panel:#fff;--ink:#1c2430;--muted:#667085;--line:#e3e7ee;--accent:#0b5cad;--accent-ink:#fff;--soft:#e8f1fc;--ok:#1a7f37;--okbg:#e6f4ea;--bad:#b42318;--badbg:#fdecea;--hl:#fff3bf;--warn:#fff7e0;--warnline:#e6b422}
+@media (prefers-color-scheme:dark){:root{--bg:#11151b;--panel:#191f27;--ink:#e6eaf0;--muted:#98a2b3;--line:#2a3340;--accent:#5aa2ef;--accent-ink:#0b1420;--soft:#1c2a3b;--ok:#56d364;--okbg:#14301d;--bad:#f97066;--badbg:#3a1c19;--hl:#5a4a0a;--warn:#33290a;--warnline:#b8901a}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:16px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px 14px;min-height:44px}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button:disabled{opacity:.45;cursor:default}
+input[type=text],input[type=email],input[type=password]{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:10px;width:100%;min-height:44px}
+.titlebar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,#0a2347 0%,#0b5cad 100%);color:#fff;border-bottom:4px solid #ffc857}
+.titlebar h1{margin:0;font-size:20px;line-height:1.2}
+.titlebar h1 span{color:#ffc857}
+.titlebar small{display:block;color:#d6e4f7;font-size:12px;letter-spacing:.04em}
+.tb-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:#d6e4f7}
+.tb-r button{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4);padding:6px 10px;min-height:36px}
+main{max-width:980px;margin:0 auto;padding:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
+.daygrid{display:grid;grid-template-columns:1fr;gap:10px}
+.day{display:block;text-align:left;width:100%;padding:14px}
+.day b{display:block;font-size:17px}
+.day small{color:var(--muted);display:block;margin-top:2px}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--ok)}
+.soon{opacity:.6}
+.crumb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.pill{display:inline-block;background:var(--soft);color:var(--accent);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
+h2{margin:.2em 0 .3em;font-size:21px}
+h3{margin:.8em 0 .3em;font-size:17px}
+.why{background:var(--soft);border-left:4px solid var(--accent);padding:10px 12px;border-radius:6px;margin:10px 0}
+.slip{background:var(--warn);border-left:4px solid var(--warnline);padding:10px 12px;border-radius:6px;margin:10px 0}
+.see{background:var(--okbg);border-left:4px solid var(--ok);padding:10px 12px;border-radius:6px;margin:10px 0}
+.do{margin:10px 0;padding:0;list-style:none;counter-reset:d}
+.do li{counter-increment:d;position:relative;padding:8px 8px 8px 40px;margin:6px 0;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.do li:before{content:counter(d);position:absolute;left:10px;top:8px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;text-align:center;line-height:22px}
+code,.fx{font-family:Consolas,"Courier New",monospace;background:var(--soft);padding:1px 6px;border-radius:5px;font-size:.92em;word-break:break-word}
+.fxrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.fxrow .fx{flex:1;min-width:0;padding:8px 10px;font-size:.98em;display:block}
+.fxrow button{padding:4px 10px;min-height:36px;font-size:13px}
+.menu{font-weight:600}
+.gridwrap{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.scr{font:12.5px/1.35 Consolas,"Courier New",monospace;background:#0f1722;color:#d6e4f7;border-radius:8px;padding:10px 12px;margin:10px 0;overflow-x:auto;white-space:pre}
+details{margin:10px 0;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--panel)}details summary{cursor:pointer;min-height:32px}
+.gcap{font-size:13px;color:var(--muted);margin:10px 0 2px;font-weight:600}
+table.g{border-collapse:collapse;width:100%;font:13px Consolas,"Courier New",monospace;white-space:nowrap}
+table.g th,table.g td{border:1px solid var(--line);padding:3px 8px;text-align:left}
+table.g thead th{background:var(--soft);text-align:center;color:var(--muted);font-weight:600}
+table.g tbody th{background:var(--soft);color:var(--muted);font-weight:600;text-align:center;width:36px}
+table.g tr.hdr td{font-weight:700;background:var(--soft)}
+table.g.wrap td{white-space:normal;min-width:110px;vertical-align:top}
+table.g td.hl{background:var(--hl);font-weight:700}
+table.g td.bad{background:var(--badbg);color:var(--bad);font-weight:700}
+table.g td.good{background:var(--okbg);color:var(--ok);font-weight:700}
+table.g td.num{text-align:right}
+table.g tr.gap td{text-align:center;color:var(--muted);background:var(--bg)}
+.nav{display:flex;gap:8px;justify-content:space-between;margin-top:14px;position:sticky;bottom:0;background:var(--bg);padding:8px 0}
+.nav button{flex:1}
+.prog{font-size:13px;color:var(--muted)}
+.parts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.parts button{padding:4px 10px;min-height:36px;font-size:13px}
+.parts button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.q{border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;background:var(--panel)}
+.q .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.q .row input{flex:1;min-width:140px}
+.q .res{margin-top:8px}
+.q .res.ok{color:var(--ok);font-weight:600}
+.q .res.no{color:var(--bad);font-weight:600}
+.ans{margin-top:8px;padding:10px;border-radius:8px;background:var(--okbg);border-left:4px solid var(--ok)}
+.chk label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.chk input{width:22px;height:22px;margin-top:2px}
+#login{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10;overflow:auto}
+#login[hidden]{display:none}
+#login .card{max-width:380px;width:100%}
+.msg{min-height:1.4em;color:var(--bad);font-size:14px;margin:6px 0}
+.msg.ok{color:var(--ok)}
+.linkbtn{background:none;border:none;color:var(--accent);padding:6px 0;min-height:0;text-decoration:underline}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:16px}
+@media (min-width:601px){.daygrid{grid-template-columns:1fr 1fr}.titlebar h1{font-size:24px}}
+@media (min-width:881px){main{padding:18px}.card{padding:18px}.nav button{flex:none;min-width:150px}}
+@media (max-width:600px){body{font-size:15px}table.g{font-size:12px}table.g th,table.g td{padding:2px 5px}.nav{padding:6px 0}}
+</style>
+</head>
+<body>
+<div id="login" hidden><div class="card">
+  <h2>Non-SAP Topics Self Study Course</h2>
+  <p style="color:var(--muted);margin-top:0">TIB Systems LLC. Sign in with your TIB trainee account.</p>
+  <form id="loginForm"><input id="lEmail" type="email" placeholder="Email" autocomplete="username" required style="margin-bottom:8px"><input id="lPass" type="password" placeholder="Password" autocomplete="current-password" required>
+    <div class="msg" id="loginMsg"></div><button class="primary" id="lGo" style="width:100%">Sign in</button><button type="button" class="linkbtn" id="lForgot">Forgot password?</button></form>
+  <form id="resetForm" hidden><p>Choose a new password.</p><input id="rPass1" type="password" placeholder="New password" autocomplete="new-password" required style="margin-bottom:8px"><input id="rPass2" type="password" placeholder="Repeat new password" autocomplete="new-password" required>
+    <div class="msg" id="resetMsg"></div><button class="primary" id="rGo" style="width:100%">Save password</button></form>
+</div></div>
+
+<div class="titlebar"><div><h1>Non-SAP Topics <span>Self Study Course</span></h1><small>TIB SYSTEMS LLC · SOX TESTER CRASH COURSE · PREP BLOCK, DAYS 1 TO 5</small></div>
+  <div class="tb-r"><span id="who"></span><button id="btnHome" hidden>All days</button><button id="btnOut" hidden>Sign out</button></div></div>
+<main id="app"></main>
+<footer>© TIB Systems LLC · course material for enrolled trainees only · all data in this course is fictional</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>window.DAYS=[];</script>
+<script src="day1.js?v=1"></script>
+<script src="day2.js?v=1"></script>
+<script src="day3.js?v=1"></script>
+<script src="day4.js?v=1"></script>
+<script src="day5.js?v=1"></script>
+<script>
+'use strict';
+const SB_URL='https://blfgwysgekfqhcafofhe.supabase.co',SB_KEY='sb_publishable_ThLetpd4hj49fjce-kXoFA_v4ghwIqV';
+let RECOVERY=/type=recovery/.test(location.hash+location.search);
+const sb=supabase.createClient(SB_URL,SB_KEY);
+sb.auth.onAuthStateChange(ev=>{if(ev==='PASSWORD_RECOVERY'){RECOVERY=true;showReset()}});
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const PLAN=[[1,'Excel handling','Load a file safely, make it fit for testing, prove nothing was lost'],[2,'Excel testing formulas','Use formulas to decide pass or fail across a whole population'],[3,'Route 1: the evidence habit','Capture, count and log an extract so it can be trusted'],[4,'Route 2: client-supplied data','Write a request, validate the file, ask the follow-up'],[5,'Evidence output and the worked gate task','Workpaper, exceptions, five-part finding, self-review']];
+const T={email:'',day:null,part:0,step:0};
+let ST={};const key=()=>'nsp:'+T.email;
+function load(){try{ST=JSON.parse(localStorage.getItem(key())||'{}')}catch(e){ST={}}}
+function save(){try{localStorage.setItem(key(),JSON.stringify(ST))}catch(e){}}
+const dayOf=n=>DAYS.find(d=>d.n===n);
+function stepIds(d){const a=[];d.parts.forEach((p,pi)=>p.steps.forEach((s,si)=>a.push(d.n+'.'+pi+'.'+si)));return a}
+function dayPct(d){const ids=stepIds(d);const q=d.questions?d.questions.length:0;const total=ids.length+q;if(!total)return 0;let done=ids.filter(i=>(ST.s||{})[i]).length+(d.questions||[]).filter(x=>(ST.q||{})[d.n+'.'+x.id]).length;return Math.round(100*done/total)}
+
+/* ---------- auth ---------- */
+$('#loginForm').onsubmit=async e=>{e.preventDefault();$('#lGo').disabled=true;$('#loginMsg').textContent='';
+  const {error}=await sb.auth.signInWithPassword({email:$('#lEmail').value.trim().toLowerCase(),password:$('#lPass').value});
+  $('#lGo').disabled=false;if(error){$('#loginMsg').textContent='Sign-in failed: '+error.message;return}start()};
+$('#btnOut').onclick=async()=>{await sb.auth.signOut();location.reload()};
+function msg(id,text,ok){const m=$(id);m.textContent=text;m.classList.toggle('ok',!!ok)}
+$('#lForgot').onclick=async()=>{const email=$('#lEmail').value.trim().toLowerCase();if(!email){msg('#loginMsg','Type your email address above, then click Forgot password.');$('#lEmail').focus();return}
+  $('#lForgot').disabled=true;const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});$('#lForgot').disabled=false;
+  if(error)msg('#loginMsg','Could not send the reset email: '+error.message);else msg('#loginMsg','If this email has a TIB Systems account, a password reset link is on its way. Open it on this device.',true)};
+function showReset(){$('#login').hidden=false;$('#loginForm').hidden=true;$('#resetForm').hidden=false;$('#rPass1').focus()}
+$('#resetForm').onsubmit=async e=>{e.preventDefault();if($('#rPass1').value!==$('#rPass2').value){msg('#resetMsg','The two passwords do not match.');return}
+  $('#rGo').disabled=true;const {error}=await sb.auth.updateUser({password:$('#rPass1').value});$('#rGo').disabled=false;
+  if(error){msg('#resetMsg','Could not save the password: '+error.message);return}
+  RECOVERY=false;history.replaceState(null,'',location.pathname);$('#resetForm').hidden=true;$('#loginForm').hidden=false;start()};
+async function start(){
+  if(RECOVERY){showReset();return}
+  const {data:{session}}=await sb.auth.getSession();if(!session){$('#login').hidden=false;return}
+  const {data:ok,error}=await sb.rpc('is_crash_course_enrolled');
+  if(error||!ok){$('#login').hidden=false;$('#loginMsg').textContent=`${session.user.email} is not enrolled in this course. Please contact TIB Systems.`;await sb.auth.signOut();return}
+  $('#login').hidden=true;T.email=session.user.email.toLowerCase();$('#who').textContent=session.user.email;$('#btnOut').hidden=false;load();home();
+}
+$('#btnHome').onclick=()=>home();
+
+/* ---------- renderers ---------- */
+function grid(g){
+  if(!g)return'';
+  const rows=g.rows,show=g.show||rows.map((_,i)=>i);const nc=Math.max(...rows.map(r=>r.length),(g.cols||[]).length);
+  const letters=g.cols||Array.from({length:nc},(_,i)=>String.fromCharCode(65+i));
+  let h=(g.cap?`<div class="gcap">${esc(g.cap)}</div>`:'')+`<div class="gridwrap"><table class="g${rows.some(r=>r.some(c=>String(c).length>38))?' wrap':''}"><thead><tr><th></th>`+letters.map(l=>`<th>${esc(l)}</th>`).join('')+'</tr></thead><tbody>';
+  let prev=-1;
+  show.forEach(i=>{
+    if(prev>=0&&i>prev+1)h+=`<tr class="gap"><td colspan="${nc+1}">…</td></tr>`;prev=i;
+    const r=rows[i],rn=(g.rowNums===false?'':g.rowNums?g.rowNums[i]:i+1);
+    h+=`<tr class="${i===0&&g.header!==false?'hdr':''}"><th>${rn}</th>`;
+    for(let c=0;c<nc;c++){const m=(g.mark||{})[i+','+c]||'';const v=r[c]==null?'':r[c];h+=`<td class="${m}${typeof v==='number'?' num':''}">${esc(v)}</td>`}
+    h+='</tr>'});
+  return h+'</tbody></table></div>'+(g.note?`<div style="font-size:13px;color:var(--muted)">${g.note}</div>`:'');
+}
+function doList(items){if(!items||!items.length)return'';return'<ol class="do">'+items.map(x=>{
+  if(typeof x==='string')return`<li>${x}</li>`;
+  if(x.f)return`<li>${x.t||'Type this formula:'}<div class="fxrow"><code class="fx">${esc(x.f)}</code><button data-copy="${esc(x.f)}">Copy</button></div>${x.after||''}</li>`;
+  return`<li>${x.t}</li>`}).join('')+'</ol>'}
+function stepHtml(s){
+  return`<h2>${s.h}</h2>`+(s.why?`<div class="why"><b>Why.</b> ${s.why}</div>`:'')+(s.intro?`<p>${s.intro}</p>`:'')+doList(s.do)+(s.grids||[]).map(grid).join('')+(s.extra||'')+(s.see?`<div class="see"><b>You should see.</b> ${s.see}</div>`:'')+(s.slip?`<div class="slip"><b>Common slip.</b> ${s.slip}</div>`:'');
+}
+function home(){
+  T.day=null;$('#btnHome').hidden=true;
+  $('#app').innerHTML=`<div class="card"><h2>Welcome</h2><p>This course teaches you, on your own, how to do the five Prep Block days: handle data in Excel, prove it complete, use formulas to test, work with client-supplied data, and write the evidence. Each day is a guided walkthrough on the real practice data. You watch each step done, do it yourself in Excel, then check your answers.</p>
+  <p><b>How to work:</b> read a step, do it in your own Excel with the practice file, then press <b>Next</b>. Answer the questions at the end of each day. Your progress is saved on this device.</p></div>
+  <div class="daygrid">`+PLAN.map(([n,t,s])=>{const d=dayOf(n);return d?`<button class="day card" data-day="${n}"><b>Day ${n}: ${esc(t)}</b><small>${esc(s)} · about ${esc(d.time)}</small><div class="bar"><i style="width:${dayPct(d)}%"></i></div><small>${dayPct(d)}% done</small></button>`:`<div class="day card soon"><b>Day ${n}: ${esc(t)}</b><small>${esc(s)}</small><small>Coming soon</small></div>`}).join('')+'</div>';
+}
+function openDay(n,part,step){T.day=n;T.part=part||0;T.step=step||0;$('#btnHome').hidden=false;renderStep()}
+function renderStep(){
+  const d=dayOf(T.day);const isQ=T.part>=d.parts.length;
+  let h=`<div class="crumb"><span class="pill">Day ${d.n}</span><b>${esc(d.title)}</b></div><div class="card"><p style="margin:0">${d.goal}</p>${d.file?`<p style="margin:6px 0 0"><b>Practice file:</b> ${d.file}</p>`:''}</div>`;
+  h+='<div class="parts">'+d.parts.map((p,i)=>`<button data-part="${i}" class="${i===T.part?'on':''}">${esc(p.short||p.t)}</button>`).join('')+`<button data-part="${d.parts.length}" class="${isQ?'on':''}">Check yourself</button></div>`;
+  if(!isQ){const p=d.parts[T.part],s=p.steps[T.step];
+    h+=`<div class="card"><div class="prog">${esc(p.t)} · step ${T.step+1} of ${p.steps.length}</div>${stepHtml(s)}</div>
+    <div class="nav"><button id="prev">Back</button><button id="next" class="primary">${T.step===p.steps.length-1?(T.part===d.parts.length-1?'On to the questions':'Next part'):'Next step'}</button></div>`;
+  }else{h+=questionsHtml(d)}
+  $('#app').innerHTML=h;scrollTo(0,0);
+  const pv=$('#prev');if(pv)pv.onclick=()=>stepMove(-1);const nx=$('#next');if(nx)nx.onclick=()=>stepMove(1);
+}
+function stepMove(dir){
+  const d=dayOf(T.day);ST.s=ST.s||{};
+  if(dir>0){ST.s[T.day+'.'+T.part+'.'+T.step]=1;save()}
+  let p=T.part,s=T.step+dir;
+  if(s<0){p--;if(p<0){home();return}s=d.parts[p].steps.length-1}
+  else if(s>=d.parts[p].steps.length){p++;s=0}
+  T.part=p;T.step=s;renderStep();
+}
+function norm(v){return String(v).trim().toLowerCase().replace(/[\s,]+/g,' ').replace(/\.$/,'')}
+function questionsHtml(d){
+  ST.q=ST.q||{};
+  return`<div class="card"><h2>Check yourself</h2><p>${d.qintro||'Answer from your own Excel work. Type your answer and press Check. If you are stuck, press Show me to see the answer, the formula and how to get it.'}</p>`+d.questions.map(q=>{const done=ST.q[d.n+'.'+q.id];
+    return`<div class="q" data-q="${q.id}"><b>${q.id}.</b> ${q.q}<div class="row"><input type="text" placeholder="Your answer" inputmode="${q.kind==='num'?'numeric':'text'}"><button data-check="${q.id}">Check</button><button data-show="${q.id}">Show me</button></div><div class="res"></div><div class="ans" hidden></div>${done?'<div class="res ok">Done earlier.</div>':''}</div>`}).join('')+'</div>'
+  +(d.done?`<div class="card chk"><h2>Done when</h2>${d.done.map((x,i)=>`<label><input type="checkbox" data-done="${i}" ${((ST.c||{})[d.n+'.'+i])?'checked':''}> <span>${x}</span></label>`).join('')}</div>`:'');
+}
+function ansHtml(q){return`<b>Answer: ${esc(q.show)}</b><br><span style="color:var(--muted)">Formula or method:</span> <code>${esc(q.formula)}</code><br>${q.how||''}`}
+function loadXlsx(){return window.XLSX?Promise.resolve():new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=res;s.onerror=()=>rej(new Error('check your internet connection'));document.head.appendChild(s)})}
+async function dlSheets(f){await loadXlsx();const wb=XLSX.utils.book_new();
+  f.sheets.forEach(([name,rows,dt])=>{const aoa=dt?rows.map(r=>r.map(v=>/^\d{4}-\d{2}-\d{2}$/.test(v)?new Date(+v.slice(0,4),+v.slice(5,7)-1,+v.slice(8,10)):v)):rows;
+    const ws=XLSX.utils.aoa_to_sheet(aoa,{cellDates:true});
+    if(dt)Object.keys(ws).forEach(k=>{if(k[0]!=='!'&&ws[k].t==='d')ws[k].z='yyyy-mm-dd'});
+    const nc=Math.max(...rows.map(r=>r.length));ws['!cols']=Array.from({length:nc},(_,c)=>({wch:Math.min(60,Math.max(10,...rows.map(r=>String(r[c]==null?'':r[c]).length+2)))}));
+    XLSX.utils.book_append_sheet(wb,ws,name)});
+  XLSX.writeFile(wb,f.name,{cellDates:true})}
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const dd=t.closest('[data-day]');if(dd){openDay(+dd.dataset.day);return}
+  const pt=t.closest('[data-part]');if(pt){T.part=+pt.dataset.part;T.step=0;renderStep();return}
+  const cp=t.closest('[data-copy]');if(cp){const v=cp.dataset.copy;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>{cp.textContent='Copied'}).catch(()=>{const ta=document.createElement('textarea');ta.value=v;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');cp.textContent='Copied'}catch(x){cp.textContent='Select and copy'}ta.remove()});setTimeout(()=>cp.textContent='Copy',1600);return}
+  const dl=t.closest('[data-dl]');if(dl){const d=dayOf(T.day);const f=d.files[+dl.dataset.dl];if(f.sheets){const lab=dl.textContent;dl.textContent='Preparing…';dlSheets(f).then(()=>{dl.textContent=lab}).catch(e=>{dl.textContent='Could not build the file: '+e.message;setTimeout(()=>dl.textContent=lab,4000)});return}const b=new Blob([f.bytes||f.data],{type:f.type||'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);return}
+  const ck=t.closest('[data-check]');if(ck){const d=dayOf(T.day),q=d.questions.find(x=>x.id===ck.dataset.check),box=ck.closest('.q'),val=box.querySelector('input').value,res=box.querySelector('.res');
+    if(!val.trim()){res.className='res no';res.textContent='Type your answer first.';return}
+    const ok=q.ok(val);res.className='res '+(ok?'ok':'no');res.textContent=ok?'Correct. Well done.':(q.hint||'Not quite. Check your count and your formula, then try again.');
+    if(ok){ST.q=ST.q||{};ST.q[d.n+'.'+q.id]=1;save();const a=box.querySelector('.ans');a.hidden=false;a.innerHTML=ansHtml(q)}return}
+  const sh=t.closest('[data-show]');if(sh){const d=dayOf(T.day),q=d.questions.find(x=>x.id===sh.dataset.show),a=sh.closest('.q').querySelector('.ans');a.hidden=false;a.innerHTML=ansHtml(q);return}
+  const dn=t.closest('[data-done]');if(dn){ST.c=ST.c||{};ST.c[T.day+'.'+dn.dataset.done]=dn.checked?1:0;save()}
+});
+start();
+</script>
+</body>
+</html>
